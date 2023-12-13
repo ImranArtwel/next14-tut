@@ -1,4 +1,4 @@
-import { Revenue } from './definitions';
+import { FormattedCustomersTable, Revenue } from './definitions';
 
 export const formatCurrency = (amount: number) => {
   return (amount / 100).toLocaleString('en-US', {
@@ -66,4 +66,15 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
     '...',
     totalPages,
   ];
+};
+
+export const formatCustomers = (
+  customers: FormattedCustomersTable[],
+): FormattedCustomersTable[] => {
+  return customers.map((customer) => ({
+    ...customer,
+    image_url: `/customer/${customer.name
+      .toLowerCase()
+      .replace(/\s+/g, '-')}.png`,
+  }));
 };
